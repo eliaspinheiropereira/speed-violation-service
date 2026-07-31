@@ -13,3 +13,4 @@ public interface ViolationMapper {
     ViolationWithInfractionResponse toDtoWithInfraction(Violation entity);
     ViolationWithoutInfractionResponse toDtoWithoutInfraction(Violation entity);
 }
+
