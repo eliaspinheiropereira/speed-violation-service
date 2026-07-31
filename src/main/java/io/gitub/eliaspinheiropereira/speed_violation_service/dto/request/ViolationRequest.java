@@ -12,9 +12,6 @@ public record ViolationRequest(
         )
         String licensePlate,
 
-        @NotBlank(message = "Equipment ID is required")
-        String equipmentId,
-
         @NotNull(message = "Measured speed is required")
         @Positive(message = "Measured speed must be greater than zero")
         Integer measuredSpeed,
@@ -22,6 +19,9 @@ public record ViolationRequest(
         @NotNull(message = "Speed limit is required")
         @Positive(message = "Speed limit must be greater than zero")
         Integer speedLimit,
+
+        @NotBlank(message = "Equipment ID is required")
+        String equipmentId,
 
         @NotNull(message = "Capture timestamp is required")
         @PastOrPresent(message = "Capture timestamp cannot be in the future")

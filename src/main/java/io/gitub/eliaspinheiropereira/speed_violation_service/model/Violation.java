@@ -1,5 +1,6 @@
 package io.gitub.eliaspinheiropereira.speed_violation_service.model;
 
+import io.gitub.eliaspinheiropereira.speed_violation_service.model.enums.Origin;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,6 +22,7 @@ public class Violation {
     private boolean hasViolation;
     private Timestamp captureTimestamp;
     private Timestamp processedAt;
+    private Origin origin;
 
     @OneToOne(mappedBy = "violation", cascade = CascadeType.ALL, orphanRemoval = true)
     private ViolationDetail violationDetail;
