@@ -3,6 +3,7 @@ package io.gitub.eliaspinheiropereira.speed_violation_service.handler;
 import io.gitub.eliaspinheiropereira.speed_violation_service.dto.response.ErrorFieldResponse;
 import io.gitub.eliaspinheiropereira.speed_violation_service.dto.response.ErrorResponse;
 import io.gitub.eliaspinheiropereira.speed_violation_service.exception.HeaderValidationException;
+import io.gitub.eliaspinheiropereira.speed_violation_service.exception.ViolationNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -30,7 +31,7 @@ public class GlobalExceptionHandler {
 
         ErrorResponse response = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
-                "Houve um erro na validação do campo",
+                "There was an error validating the field.",
                 erros
         );
 
@@ -54,17 +55,16 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
-//    TODO: pode ser retirado no final do projeto se não for utilizado.
-//    @ExceptionHandler(HeaderValidationException.class)
-//    public ResponseEntity<ErrorResponse> handleHeaderValidationException(
-//            HeaderValidationException ex) {
-//
-//        ErrorResponse response = new ErrorResponse(
-//                HttpStatus.NOT_FOUND.value(),
-//                ex.getMessage(),
-//                List.of()
-//        );
-//
-//        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
-//    }
+    @ExceptionHandler(ViolationNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleViolationNotFoundException(
+            ViolationNotFoundException ex) {
+
+        ErrorResponse response = new ErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                ex.getMessage(),
+                List.of()
+        );
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
 }

@@ -2,7 +2,7 @@ package io.gitub.eliaspinheiropereira.speed_violation_service.dto.response;
 
 import java.sql.Timestamp;
 
-public record ViolationWithoutInfractionResponse(
+public record ViolationResponse(
         String licensePlate,
         String equipmentId,
         int measuredSpeed,
@@ -10,7 +10,7 @@ public record ViolationWithoutInfractionResponse(
         int speedLimit,
         double excessPercentage,
         boolean hasViolation,
-        ViolationDetailResponse violation, // será null
+        ViolationDetailResponse violation,
         Timestamp processedAt
 ) {
 }
