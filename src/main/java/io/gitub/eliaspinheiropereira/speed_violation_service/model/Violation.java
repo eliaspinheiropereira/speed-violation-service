@@ -14,7 +14,7 @@ public class Violation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String licensePlate;
-    private String equipamentId;
+    private String equipmentId;
     private int measuredSpeed;
     private int consideredSpeed;
     private int speedLimit;

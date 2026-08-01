@@ -1,6 +1,7 @@
 package io.gitub.eliaspinheiropereira.speed_violation_service.controller;
 
 import io.gitub.eliaspinheiropereira.speed_violation_service.dto.request.ViolationRequest;
+import io.gitub.eliaspinheiropereira.speed_violation_service.dto.response.ViolationResponse;
 import io.gitub.eliaspinheiropereira.speed_violation_service.model.enums.Origin;
 import io.gitub.eliaspinheiropereira.speed_violation_service.service.ViolationService;
 import jakarta.validation.Valid;
@@ -11,14 +12,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/violations/evaluate")
+@RequestMapping("/api/v1/violations")
 @RequiredArgsConstructor
 @Slf4j
 public class ViolationController {
 
     private final ViolationService violationService;
 
-    @PostMapping
+    @PostMapping("/evaluate")
     public ResponseEntity<Void> evaluateViolation(
             @RequestHeader("x-origin") Origin origin,
             @Valid @RequestBody ViolationRequest violationRequest
@@ -26,5 +27,14 @@ public class ViolationController {
         log.info("POST -> /api/v1/violations/evaluate");
         this.violationService.evaluateViolation(origin, violationRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping
+    public ResponseEntity<ViolationResponse> getViolation(
+            @RequestParam("licensePlate") String licensePlate
+    ){
+        log.info("GET -> /api/v1/violations?licensePlate={}", licensePlate);
+        ViolationResponse violationResponse = this.violationService.getViolation(licensePlate);
+        return ResponseEntity.ok(violationResponse);
     }
 }
