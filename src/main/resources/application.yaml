@@ -21,3 +21,14 @@ spring:
 server:
   port: 8080
 
+app:
+  tolerance-kmh: 7
+  tolerance-percentage: 0.07
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+  api-docs:
+    path: /v3/api-docs
