@@ -8,7 +8,6 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses = {ViolationDetailMapper.class})
 public interface ViolationMapper {
-
     Violation toEntity(ViolationRequest dto);
 
     @Mapping(source = "violationDetail", target = "violation")

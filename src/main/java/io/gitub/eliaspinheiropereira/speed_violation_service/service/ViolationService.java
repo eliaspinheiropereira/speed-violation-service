@@ -28,9 +28,15 @@ public class ViolationService {
     @Transactional
     public void evaluateViolation(Origin origin, ViolationRequest dto) {
         this.headerValidation.validation(origin.name());
-        var violation = violationMapper.toEntity(dto);
-        this.violationCalculatorService.calculateViolation(violation);
-        violationRepository.save(violation);
+
+        var violationExists = this.violationRepository.findByLicensePlate(dto.licensePlate());
+        if (violationExists.isPresent()) {
+            this.updateViolation(violationExists.get(), dto);
+        }else{
+            var violation = violationMapper.toEntity(dto);
+            this.violationCalculatorService.calculateViolation(violation);
+            violationRepository.save(violation);
+        }
     }
 
     public ViolationResponse getViolation(String licensePlate) {
@@ -42,5 +48,20 @@ public class ViolationService {
         }
 
         return violationMapper.toDto(searchViolation.get());
+    }
+
+    private void updateViolation(Violation violation, ViolationRequest dto) {
+        violation.setMeasuredSpeed(dto.measuredSpeed());
+        violation.setSpeedLimit(dto.speedLimit());
+        violation.setEquipmentId(dto.equipmentId());
+        violation.setCaptureTimestamp(dto.captureTimestamp());
+
+        violation.setHasViolation(null);
+        violation.setConsideredSpeed(null);
+        violation.setExcessPercentage(null);
+        violation.setViolationDetail(null);
+
+        this.violationCalculatorService.calculateViolation(violation);
+        this.violationRepository.save(violation);
     }
 }
