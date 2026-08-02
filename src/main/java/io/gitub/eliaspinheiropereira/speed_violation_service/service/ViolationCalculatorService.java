@@ -4,6 +4,7 @@ import io.gitub.eliaspinheiropereira.speed_violation_service.model.Violation;
 import io.gitub.eliaspinheiropereira.speed_violation_service.model.ViolationDetail;
 import io.gitub.eliaspinheiropereira.speed_violation_service.model.enums.CtbCode;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -12,12 +13,18 @@ import java.sql.Timestamp;
 @Slf4j
 public class ViolationCalculatorService {
 
+    @Value("${app.tolerance-kmh}")
+    private int toleranceKmh;
+
+    @Value("${app.tolerance-percentage}")
+    private double tolerancePercentage;
+
     private int calculateConsideredSpeed(int measuredSpeed) {
         int consideredSpeed = 0;
         if (measuredSpeed <= 100) {
-            consideredSpeed = measuredSpeed - 7;
+            consideredSpeed = measuredSpeed - toleranceKmh;
         } else {
-            double reduced = measuredSpeed - (measuredSpeed * 0.07);
+            double reduced = measuredSpeed - (measuredSpeed * tolerancePercentage);
             consideredSpeed = (int) Math.floor(reduced);
         }
         return consideredSpeed;
