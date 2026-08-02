@@ -12,6 +12,7 @@
     - [Caso com Infração](#caso-com-infração-post-apiv1violationsevaluate)
     - [Caso de Busca](#caso-de-busca-com-postman)
     - [Consulta de Violações por Placa](#consulta-de-violações-por-placa)
+- [Testando cobertura com jacoco](#testando-cobertura-com-jacoco)
 - [Estrutura do Projeto](#estrutura-do-projeto)
     - [Camadas Principais](#-camadas-principais)
 
@@ -166,6 +167,18 @@ Além de registrar infrações, a API permite consultar violações já processa
   }
 ]
 ```
+
+---
+
+## Testando cobertura com jacoco
+
+1. Após o projeto já iniciado pelo docker ou mvn.
+2. entre na pasta do projeto chamada speed-violation-service
+3. depois use o comando ./mvnw clean install
+4. depois entre na pasta target/site/jacoco
+5. abra com seu navegador o arquivo index.html
+6. acesse io.gitub.eliaspinheiropereira.speed_violation_service.service
+7. vai ter a cobertura dos testes das regras de negocio.
 
 ---
 
