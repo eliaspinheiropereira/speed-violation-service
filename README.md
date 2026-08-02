@@ -189,7 +189,7 @@ Essa organização separa responsabilidades em pacotes distintos, facilitando ma
 
 ---
 
-### 📂 Camadas Principais
+### Camadas Principais
 
 - **Controller Layer**  
   Responsável por expor os **endpoints REST** da aplicação.  
