@@ -131,7 +131,7 @@ Abaixo estão instruções para configurar as requisições:
 6. Insira o seguinte JSON para caso com infração:
 ```json
 {
-  "licensePlate": "ABC1D24",
+  "licensePlate": "JUB6334",
   "measuredSpeed": 75,
   "speedLimit": 60,
   "equipmentId": "RAD-CWB-001-20",
