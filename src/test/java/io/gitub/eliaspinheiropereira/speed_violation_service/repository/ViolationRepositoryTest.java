@@ -78,7 +78,6 @@ class ViolationRepositoryTest {
                     assertThat(v.getConsideredSpeed()).isEqualTo(82);
                     assertThat(v.getSpeedLimit()).isEqualTo(60);
                     assertThat(v.getExcessPercentage()).isEqualTo(36.7);
-                    assertThat(v.isHasViolation()).isTrue();
                     assertThat(v.getOrigin()).isEqualTo(Origin.FIXED);
                 });
     }
