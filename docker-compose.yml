@@ -1,0 +1,17 @@
+services:
+  speed_violation_service-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: speed_violation_service
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+    networks:
+      - speed_violation_service-network
+
+networks:
+  speed_violation_service-network:
+    driver: bridge
+
