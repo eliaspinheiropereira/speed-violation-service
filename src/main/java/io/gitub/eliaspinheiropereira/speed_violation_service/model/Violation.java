@@ -13,13 +13,14 @@ public class Violation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(unique = true)
     private String licensePlate;
     private String equipmentId;
-    private int measuredSpeed;
-    private int consideredSpeed;
-    private int speedLimit;
-    private double excessPercentage;
-    private boolean hasViolation;
+    private Integer measuredSpeed;
+    private Integer consideredSpeed;
+    private Integer speedLimit;
+    private Double excessPercentage;
+    private Boolean hasViolation;
     private Timestamp captureTimestamp;
     private Timestamp processedAt;
     private Origin origin;

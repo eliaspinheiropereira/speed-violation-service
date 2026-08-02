@@ -2,7 +2,6 @@ package io.gitub.eliaspinheiropereira.speed_violation_service.handler;
 
 import io.gitub.eliaspinheiropereira.speed_violation_service.dto.response.ErrorFieldResponse;
 import io.gitub.eliaspinheiropereira.speed_violation_service.dto.response.ErrorResponse;
-import io.gitub.eliaspinheiropereira.speed_violation_service.exception.HeaderValidationException;
 import io.gitub.eliaspinheiropereira.speed_violation_service.exception.ViolationNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
